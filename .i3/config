@@ -11,11 +11,13 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:System San Francisco Display 11, FontAwesome 12
+#font pango: Roboto Mono for Powerline 6, FontAwesome
+font pango: Fantasque Sans Mono 8, FontAwesome
 
+
+exec_always xrdb ~/.Xdefaults
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -27,12 +29,14 @@ font pango:System San Francisco Display 11, FontAwesome 12
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-bindsym $mod+Return exec urxvtcd
+bindsym $mod+Return exec urxvt
 
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
+#start NetworkManager Applet
+exec nm-applet
 # start dmenu (a program launcher)
 bindsym $mod+d exec "rofi -combi-modi window,drun -show combi -modi combi"
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -40,7 +44,7 @@ bindsym $mod+d exec "rofi -combi-modi window,drun -show combi -modi combi"
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-#---------------------------3-gaps------------------------------
+#---------------------------i3-gaps------------------------------
 
 for_window [class="^.*"] border pixel 3
 smart_gaps on
@@ -139,15 +143,15 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-set $workspace1 "1: "
-set $workspace2 "2: "
-set $workspace3 "3: "
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
 set $workspace4 "4"
 set $workspace5 "5"
 set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
-set $workspace9 "9: "
+set $workspace9 "9"
 set $workspace10 "10"
 
 bindsym $mod+1 workspace $workspace1
@@ -162,24 +166,20 @@ bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
 
 # move focused container to workspace
+
+bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
 bindsym $mod+Shift+4 move container to workspace $workspace4
 bindsym $mod+Shift+5 move container to workspace $workspace5
 bindsym $mod+Shift+6 move container to workspace $workspace6
 bindsym $mod+Shift+7 move container to workspace $workspace7
-bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
 #move programs to specific workspaces
 assign [class="Firefox"] $workspace1
-#assign [class="jetbrains-studio"] $workspace3
-
-#for_window [class="jetbrains-[pycharm-ce"] $workspace4
-
-
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -213,10 +213,11 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-workspace_auto_back_and_forth yes
+#workspace_auto_back_and_forth yes
 
 #colors
 set $bg-color 	         #2f343f
+set $focus-dark          #10a0a0
 set $inactive-bg-color   #2f343f
 set $text-color          #10a0a0
 #old text color #FE9A2E
@@ -236,6 +237,8 @@ bindsym Control+Shift+x [class="^.*"] border toggle
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+        font pango: Fantasque Sans Mono 12
+
         status_command i3blocks -c /home/david/.i3/i3blocks.conf
         tray_output primary
         position top
@@ -245,7 +248,7 @@ bar {
             		#                  border             background         text
             		focused_workspace  $bg-color          $bg-color          $text-color
             		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-                urgent_workspace $urgent-bg-color $urgent-bg-color $text-color
+                urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
         }
 }
 
@@ -257,9 +260,28 @@ bindsym $mod+shift+x exec i3lock --color "$bg-color"
 #bindcode 122 exec mixer -D pulse sset Master 5%+ #increase sound volume
 #bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 #bindcode 122 exec bindcode 123 exec mixer -D pulse sset Master 5%- #decrease sound volume
-bindcode 122 exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
-bindcode 123 exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
-bindcode $mod+minus exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+#bindcode 122 exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+#bindcode 123 exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+#bindcode $mod+minus exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+#no work
+#bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+#bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+#bindsym XF86AudioMute exec amixer -q set Master toggle
+
+# Pulse Audio controls
+
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 6 +5% #increase sound volume
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 6 -5% #decrease sound volume
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 6 toggle # mute sound
+
+#script
+#current
+# change volume or toggle mute
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
 
 # Sreen brightness controls
 #bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -281,14 +303,14 @@ exec --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
 
 #wallpaper
 set $wallpaperDir "/home/david/.wallpapers/"
-exec_always feh --bg-scale $wallpaperDir/night_horizon_ocean.jpg
+exec_always feh --bg-scale $wallpaperDir/night_sky_stars.png
 
 #control lock suspend reboot shutdown
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
     bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
     bindsym r exec --no-startup-id i3exit reboot, mode "default"
     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"

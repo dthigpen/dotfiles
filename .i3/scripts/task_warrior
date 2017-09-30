@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#current task
+task=""
+id=""
+urgent=""
+
+#only gets the first description
+task=$(task _get $(task +ACTIVE _id).description)
+#get all ids of active tasks
+id=$(task +ACTIVE _id)
+#turn into array, split id output by newline
+IFS=$'\n' read -r -d '' -a active_ids <<< "$id"
+maxUrgency=-1.0
+maxId=0
+#echo "${#active_ids[@]}"
+
+#find id of active task with most urgency
+for i in "${active_ids[@]}"
+do
+	#get urgency of task
+	urgent=$(task _get $i.urgency)
+	isGreater=$(echo $urgent'>='$maxUrgency | bc -l)
+	if [ "$isGreater" -eq "1" ]; then
+		maxUrgency=$urgent
+		maxId=$i
+	fi
+done
+
+if [[ ! -z $task ]]; then
+	echo "($maxId) $task"
+fi
