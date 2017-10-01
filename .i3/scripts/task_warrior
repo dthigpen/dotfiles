@@ -4,7 +4,8 @@
 task=""
 id=""
 urgent=""
-
+started=""
+result=""
 #only gets the first description
 task=$(task _get $(task +ACTIVE _id).description)
 #get all ids of active tasks
@@ -14,19 +15,45 @@ IFS=$'\n' read -r -d '' -a active_ids <<< "$id"
 maxUrgency=-1.0
 maxId=0
 #echo "${#active_ids[@]}"
-
+declare -a elapsed
+index=0
+indexOfMax=0
 #find id of active task with most urgency
 for i in "${active_ids[@]}"
 do
+	
+	#get time info
+	started=$(task _get $i.start)
+	startedSec=$(date --date="$started" +"%s")
+	now=$(date +"%s")
+	#days
+	days=$(( (now - startedSec) / 86400 ))
+	#hours
+	hours=$(( (now - startedSec) / 3600 ))
+	#minutes
+	minutes=$(( (now - startedSec) / 60 ))
+	
+	#find most appropriate elapsed time (m) (h) (d)
+	if(( $days > 0)); then
+		elapsed[index]="${days}m"
+	elif(( $hours > 0)); then
+		elapsed[index]="${hours}h"
+	else
+		elapsed[index]="${minutes}m"
+	fi	
+
+
 	#get urgency of task
 	urgent=$(task _get $i.urgency)
 	isGreater=$(echo $urgent'>='$maxUrgency | bc -l)
 	if [ "$isGreater" -eq "1" ]; then
 		maxUrgency=$urgent
 		maxId=$i
+		indexOfMax=$index
 	fi
+	let "index++"
 done
 
 if [[ ! -z $task ]]; then
-	echo "($maxId) $task"
+	echo "$maxId. $task - ${elapsed[indexOfMax]}"
 fi
