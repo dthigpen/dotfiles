@@ -2,9 +2,9 @@
 
 # -n|--next, show the task that is up next
 # -a|--active,show the most urgent active task
+# -A, warn when no active task
 # -e|--elapsed, if active show elapsed time since 'start'
 # -d|--due, show when task is due
-
 
 
 #current task
@@ -13,8 +13,10 @@ id=""
 urgent=""
 started=""
 result=""
+#TEMP VAR WARN
+
 #only gets the first description
-task=$(task _get $(task +ACTIVE _id).description)
+#task=$(task _get $(task +ACTIVE _id).description)
 #get all ids of active tasks
 id=$(task +ACTIVE _id)
 #turn into array, split id output by newline
@@ -26,6 +28,7 @@ declare -a elapsed
 index=0
 indexOfMax=0
 #find id of active task with most urgency
+#and calculate the elapsed time since last declared active
 for i in "${active_ids[@]}"
 do
 	
@@ -61,6 +64,12 @@ do
 	let "index++"
 done
 
-if [[ ! -z $task ]]; then
+if [[ ! -z $id ]]; then
+	task=$(task _get $maxId.description)
 	echo "$maxId. $task - ${elapsed[indexOfMax]}"
+	echo "task $maxId."
+elif [[ 1==1 ]]; then
+	echo "No task!"
+	echo ""
+	echo "#ff0000"
 fi
