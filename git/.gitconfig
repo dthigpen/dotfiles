@@ -1,0 +1,16 @@
+[user]
+	email = davidthigs@gmail.com
+	name = David Thigpen
+[core]
+	editor = micro
+[alias]
+	st = status
+	ec = config --global --edit
+	br = branch
+	cm = commit
+	cmm = commit -m
+	co = checkout
+	cob = checkout -b
+	lc = log -1
+	undo = reset --soft HEAD~1
+	rename = branch -m
