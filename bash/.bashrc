@@ -39,6 +39,21 @@ PS1=$PS1'\W '         # working dir basename
 PS1=$PS1"$nocolor"    # remove color
 PS1=$PS1'\$ '         # shell character
 
+# Functions
+
+# stow target home
+stowth()
+{
+    stow -vSt ~ $@
+}
+
+# stow unlink
+unstow()
+{
+    stow -vDt ~ $@
+}
+
+
 # Useful commands
 
 # Sort directories by size

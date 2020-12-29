@@ -4,11 +4,11 @@
 [core]
 	editor = micro
 [alias]
-	st = status
 	ec = config --global --edit
+	st = status
+	s = status --short
 	br = branch
-	cm = commit
-	cmm = commit -m
+	cm = commit -m
 	co = checkout
 	cob = checkout -b
 	lc = log -1
