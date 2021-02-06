@@ -1,11 +1,10 @@
-
 # Load the OS .bashrc
 . ~/pop.bashrc
 
 # Variables
-bashrc="~/.bashrc"
-dev="~/dev"
-notes="~/Documents/notes"
+bashrc=~/.bashrc
+dev=~/dev
+notes=~/Documents/notes
 
 # Aliases
 alias reload=". $bashrc"
@@ -17,13 +16,12 @@ alias gs="git status"
 alias py="python3"
 alias inst="sudo apt install"
 alias trash="gio trash"
+alias xclip="xclip -selection c"
 
+# Add custom commands to path
+PATH=~/dev/commands:$PATH
 # Default text editor
 EDITOR=micro
-
-# bind '"\e[A": history-search-backward'
-# bind '"\e[B": history-search-forward'
-#shopt -s autocd
 
 # Bash Prompt
 green='\[\033[01;32m\]'
@@ -58,3 +56,8 @@ unstow()
 
 # Sort directories by size
 # du -m --max-depth 1 | sort -rn
+
+# Checksum of directory
+# find some_dir -type f -exec md5sum {} \; | sort -k 2 | md5sum
+
+DOTNET_CLI_TELEMETRY_OPTOUT=1

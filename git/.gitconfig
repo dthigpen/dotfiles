@@ -8,9 +8,11 @@
 	st = status
 	s = status --short
 	br = branch
-	cm = commit -m
+	cmm = commit -m
 	co = checkout
 	cob = checkout -b
 	lc = log -1
 	undo = reset --soft HEAD~1
 	rename = branch -m
+[pull]
+	rebase = true
