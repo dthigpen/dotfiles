@@ -17,6 +17,8 @@ alias py="python3"
 alias inst="sudo apt install"
 alias trash="gio trash"
 alias xclip="xclip -selection c"
+alias exp="gio open ."
+alias code="codium"
 
 # Add custom commands to path
 PATH=~/dev/commands:$PATH
