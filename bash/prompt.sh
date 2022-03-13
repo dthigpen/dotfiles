@@ -1,0 +1,25 @@
+RESET=$(echo -en '\033[0m')
+RED=$(echo -en '\033[00;31m')
+GREEN=$(echo -en '\033[00;32m')
+YELLOW=$(echo -en '\033[00;33m')
+BLUE=$(echo -en '\033[00;34m')
+MAGENTA=$(echo -en '\033[00;35m')
+PURPLE=$(echo -en '\033[00;35m')
+CYAN=$(echo -en '\033[00;36m')
+GRAY=$(echo -en '\033[00;37m')
+WHITE=$(echo -en '\033[01;37m')
+RED_BOLD=$(echo -en '\033[01;31m')
+GREEN_BOLD=$(echo -en '\033[01;32m')
+YELLOW_BOLD=$(echo -en '\033[01;33m')
+BLUE_BOLD=$(echo -en '\033[01;34m')
+MAGENTA_BOLD=$(echo -en '\033[01;35m')
+PURPLE_BOLD=$(echo -en '\033[01;35m')
+CYAN_BOLD=$(echo -en '\033[01;36m')
+
+PS1=''
+PS1='`[ $? -eq 0 ] && echo -n "${GREEN_BOLD}OK" || echo -n "${RED_BOLD}NOT OK"; echo -n "${RESET} "`'
+PS1=$PS1'[\W]'         # working dir basename
+PS1=$PS1"$GREEN"       # change color to green
+PS1=$PS1'`__git_ps1`' # TODO: fix git prompt
+PS1=$PS1"$RESET"    # remove color
+PS1=$PS1'$ '         # shell characterL

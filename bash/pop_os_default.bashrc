@@ -115,16 +115,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-
-
-bashrc="~/.bashrc"
-
-alias reload="source ~/.bashrc"
-alias cdd="cd ~/dev"
-alias gs="git status"
-alias exp="explorer ."
-
-
-
-
