@@ -17,7 +17,7 @@ PURPLE_BOLD=$(echo -en '\033[01;35m')
 CYAN_BOLD=$(echo -en '\033[01;36m')
 
 PS1=''
-PS1='`[ $? -eq 0 ] && echo -n "${GREEN_BOLD}OK" || echo -n "${RED_BOLD}NOT OK"; echo -n "${RESET} "`'
+PS1='`[ $? -eq 0 ] && echo -n "${GREEN_BOLD}OK" || echo -n "${RED_BOLD}NOT OK";` ${RESET}'
 PS1=$PS1'[\W]'         # working dir basename
 PS1=$PS1"$GREEN"       # change color to green
 PS1=$PS1'`__git_ps1`' # TODO: fix git prompt
