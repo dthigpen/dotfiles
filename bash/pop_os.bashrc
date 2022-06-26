@@ -5,6 +5,7 @@ source ~/.dotfiles/bash/prompt.sh
 # Variables
 export PATH=~/node-v17.1.0-linux-x64/bin:$PATH
 export PATH=~/zig:$PATH
+export PATH=~/.nimble/bin:$PATH
 export PATH=~/dev/commands:$PATH
 export EDITOR=micro
 dev=~/dev
