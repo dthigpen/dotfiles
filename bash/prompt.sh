@@ -1,40 +1,39 @@
-RESET=$(echo -en '\e[0m')
-RED=$(echo -en '\e[0;31m')
-GREEN=$(echo -en '\e[0;32m')
-YELLOW=$(echo -en '\e[0;33m')
-BLUE=$(echo -en '\e[0;34m')
-MAGENTA=$(echo -en '\e[0;35m')
-PURPLE=$(echo -en '\e[0;35m')
-CYAN=$(echo -en '\e[0;36m')
-GRAY=$(echo -en '\e[0;37m')
-WHITE=$(echo -en '\e[1;37m')
-RED_BOLD=$(echo -en '\e[1;31m')
-GREEN_BOLD=$(echo -en '\e[1;32m')
-YELLOW_BOLD=$(echo -en '\e[1;33m')
-BLUE_BOLD=$(echo -en '\e[1;34m')
-MAGENTA_BOLD=$(echo -en '\e[1;35m')
-PURPLE_BOLD=$(echo -en '\e[1;35m')
-CYAN_BOLD=$(echo -en '\e[1;36m')
-# also see: https://gist.github.com/elucify/c7ccfee9f13b42f11f81
+#!/usr/bin/env bash
+GIT_COMPLETION_PATH=~/dotfiles/bash/git-completion.bash
+GIT_PROMPT_PATH=~/dotfiles/bash/git-prompt.sh
 
-# source ~/.dotfiles/bash/git-prompt.sh
-# Source the git bash completion file
-GIT_COMPLETION_PATH=~/.dotfiles/bash/git-completion.bash
-GIT_PROMPT_PATH=~/.dotfiles/bash/git-prompt.sh
+# Define colors
+RESET=$(echo -en '\001\033[0m\002')
+GRAY=$(echo -en '\001\033[00;37m\002')
+RED=$(echo -en '\001\033[01;31m\002')
+GREEN=$(echo -en '\001\033[01;32m\002')
+YELLOW=$(echo -en '\001\033[01;33m\002')
+BLUE=$(echo -en '\001\033[01;34m\002')
+MAGENTA=$(echo -en '\001\033[01;35m\002')
+PURPLE=$(echo -en '\001\033[01;35m\002')
+CYAN=$(echo -en '\001\033[01;36m\002')
+WHITE=$(echo -en '\001\033[01;37m\002')
+RED_BOLD=$(echo -en '\001\033[00;31m\002')
+GREEN_BOLD=$(echo -en '\001\033[00;32m\002')
+YELLOW_BOLD=$(echo -en '\001\033[00;33m\002')
+BLUE_BOLD=$(echo -en '\001\033[00;34m\002')
+MAGENTA_BOLD=$(echo -en '\001\033[00;35m\002')
+PURPLE_BOLD=$(echo -en '\001\033[00;35m\002')
+CYAN_BOLD=$(echo -en '\001\033[00;36m\002')
+# also see: https://stackoverflow.com/questions/10466749/bash-colored-output-with-a-variable
+
+# Source the git bash completion file and prompt file
 [ -f "${GIT_COMPLETION_PATH}" ] && source "${GIT_COMPLETION_PATH}"
 if [ -f "${GIT_PROMPT_PATH}" ]; then
     GIT_PS1_SHOWDIRTYSTATE=true
     GIT_PS1_SHOWSTASHSTATE=true
     GIT_PS1_SHOWUPSTREAM="auto"
     source "${GIT_PROMPT_PATH}"
+
+    # TODO change symbols to letters in git state
 fi
-# temp remove colors
-GREEN_BOLD=''
-GREEN=''
-RED_BOLD=''
-RESET=''
 PS1=''
 PS1='`[ $? -eq 0 ] && echo -en "${GREEN_BOLD}OK" || echo -en "${RED_BOLD}NOT OK"`${RESET}'
 PS1=$PS1'|\W'         # working dir basename
-PS1=$PS1"|${GREEN}`__git_ps1 '%s'`${RESET}" # TODO: fix git prompt
+PS1=$PS1'`__git_ps1 "|${GREEN}%s${RESET}"`'
 PS1=$PS1'|$ '         # shell character
