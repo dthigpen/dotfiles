@@ -27,13 +27,26 @@ CYAN_BOLD=$(echo -en '\001\033[00;36m\002')
 if [ -f "${GIT_PROMPT_PATH}" ]; then
     GIT_PS1_SHOWDIRTYSTATE=true
     GIT_PS1_SHOWSTASHSTATE=true
+    GIT_PS1_SHOWUNTRACKEDFILES=true
     GIT_PS1_SHOWUPSTREAM="auto"
     source "${GIT_PROMPT_PATH}"
 
     # TODO change symbols to letters in git state
+    function _git_ps1_letters {
+        local up_arrow=$(echo -e '\u2191')
+        local dn_arrow=$(echo -e '\u2193')
+        sed -E 's/=//' | # remove equal sign
+        sed -E 's/\+/i/' | # i for indexed (staged)
+        sed -E 's/\*/m/' | # m for modified (unstaged)
+        sed -E 's/\$/s/' | # s for stashed
+        sed -E 's/%/u/' | # s for stashed
+        sed -E "s/>/${up_arrow}/" | # up arrow for ahead
+        sed -E "s/</${dn_arrow}/" # down arrow for behind
+        
+    }
 fi
 PS1=''
 PS1='`[ $? -eq 0 ] && echo -en "${GREEN_BOLD}OK" || echo -en "${RED_BOLD}NOT OK"`${RESET}'
 PS1=$PS1'|\W'         # working dir basename
-PS1=$PS1'`__git_ps1 "|${GREEN}%s${RESET}"`'
+PS1=$PS1'`__git_ps1 "|${GREEN}%s${RESET}" | _git_ps1_letters`'
 PS1=$PS1'|$ '         # shell character
