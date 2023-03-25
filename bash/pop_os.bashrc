@@ -3,10 +3,12 @@ source ~/.dotfiles/bash/pop_os_default.bashrc
 source ~/.dotfiles/bash/prompt.sh
 
 # Variables
-export PATH=~/node-v17.1.0-linux-x64/bin:$PATH
+export PATH=~/node-v18.13.0-linux-x64/bin:$PATH
 export PATH=~/zig:$PATH
 export PATH=~/.nimble/bin:$PATH
 export PATH=~/dev/commands:$PATH
+export PATH=~/dev/scripts:$PATH
+export PATH=~/zig-linux-x86_64-0.11.0-dev.862+901c3e963:$PATH
 export EDITOR=micro
 dev=~/dev
 
