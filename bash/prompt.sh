@@ -31,7 +31,6 @@ if [ -f "${GIT_PROMPT_PATH}" ]; then
     GIT_PS1_SHOWUPSTREAM="auto"
     source "${GIT_PROMPT_PATH}"
 
-    # TODO change symbols to letters in git state
     function _git_ps1_letters {
         local up_arrow=$(echo -e '\u2191')
         local dn_arrow=$(echo -e '\u2193')
@@ -42,7 +41,6 @@ if [ -f "${GIT_PROMPT_PATH}" ]; then
         sed -E 's/%/u/' | # s for stashed
         sed -E "s/>/${up_arrow}/" | # up arrow for ahead
         sed -E "s/</${dn_arrow}/" # down arrow for behind
-        
     }
 fi
 PS1=''

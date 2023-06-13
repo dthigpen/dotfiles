@@ -29,5 +29,7 @@
 	lg = log --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --decorate=full
 	url = remote -v
 	rb = rebase
+	plf = pull --ff-only
+	ds = diff --staged
 [pull]
 	rebase = true
