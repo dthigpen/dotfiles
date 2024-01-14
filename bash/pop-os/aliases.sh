@@ -13,3 +13,5 @@ alias note="code ~/Documents/notes"
 alias size='du -m --max-depth 1 | sort -rn'
 # Checksum of directory
 alias md5dir='find some_dir -type f -exec md5sum {} \; | sort -k 2 | md5sum'
+# esp-idf for esp32 microcontroller development
+alias get_idf='source $HOME/esp/esp-idf/export.sh'
