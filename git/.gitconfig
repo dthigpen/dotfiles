@@ -5,6 +5,8 @@
 	editor = code --wait
 [diff]
     tool = vscode
+	colormoved = "default"
+	colormovedws = "allow-indentation-change"
 [difftool "vscode"]
     cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
@@ -33,3 +35,5 @@
 	ds = diff --staged
 [pull]
 	rebase = true
+[init]
+	defaultBranch = main
