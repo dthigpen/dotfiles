@@ -5,10 +5,10 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# functions
 function msg {
   echo >&2 -e "${1-}"
 }
+
 function activate {
   for d in env venv
   do

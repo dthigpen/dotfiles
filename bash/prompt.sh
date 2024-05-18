@@ -38,13 +38,13 @@ if [ -f "${GIT_PROMPT_PATH}" ]; then
         sed -E 's/\+/i/' | # i for indexed (staged)
         sed -E 's/\*/m/' | # m for modified (unstaged)
         sed -E 's/\$/s/' | # s for stashed
-        sed -E 's/%/u/' | # s for stashed
+        sed -E 's/%/u/' | # u for untracked
         sed -E "s/>/${up_arrow}/" | # up arrow for ahead
         sed -E "s/</${dn_arrow}/" # down arrow for behind
     }
 fi
 PS1=''
-PS1='`[ $? -eq 0 ] && echo -en "${GREEN_BOLD}OK" || echo -en "${RED_BOLD}NOT OK"`${RESET}'
+PS1='`[ $? -eq 0 ] && echo -en "${GREEN_BOLD}✔" || echo -en "${RED_BOLD}✘"`${RESET}' # last cmd success/fail
 PS1=$PS1'|\W'         # working dir basename
-PS1=$PS1'`__git_ps1 "|${GREEN}%s${RESET}" | _git_ps1_letters`'
+PS1=$PS1'`__git_ps1 "|${GREEN}%s${RESET}" | _git_ps1_letters`' # git
 PS1=$PS1'|$ '         # shell character

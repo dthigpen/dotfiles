@@ -6,7 +6,7 @@ source ~/dotfiles/bash/base/aliases.sh
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 
-alias cdd="cd $dev"
+alias cdd="cd ~/dev"
 alias cdn="cd ~/Documents/notes"
 alias note="code ~/Documents/notes"
 # Sort directories by size

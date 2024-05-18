@@ -13,7 +13,9 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export GOBIN=~/bin
 export EDITOR=micro
-dev=~/dev
+# fly.io
+export FLYCTL_INSTALL="/home/devd/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 # setup fzf ( installed at ~/.fzf )
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
