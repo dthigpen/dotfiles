@@ -27,8 +27,6 @@ function activate {
 alias rm='rm -i'
 alias ls='ls --color=auto'
 alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 alias grep='grep --color=auto'
 alias reload="source ~/.bashrc"
 alias open="xdg-open"
@@ -36,6 +34,4 @@ alias gs="git status"
 alias inst="sudo apt install"
 alias trash="gio trash"
 alias xclip="xclip -selection c"
-alias gopen="gio open"
 alias py="python3"
-alias gcd='LC_ALL=C; GIT_COMMITTER_DATE="$(date)"; git commit --amend --no-edit --date "$(date)"'
