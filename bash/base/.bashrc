@@ -3,3 +3,6 @@
 source ~/dotfiles/bash/base/env.sh
 source ~/dotfiles/bash/base/aliases.sh
 source ~/dotfiles/bash/prompt.sh
+
+# setup fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
