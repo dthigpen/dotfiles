@@ -1,3 +1,6 @@
 {
+    "*.js": {
+        "tabsize": 2
+    },
     "softwrap": true
 }
