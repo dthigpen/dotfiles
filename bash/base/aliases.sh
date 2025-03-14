@@ -27,6 +27,7 @@ function activate {
 alias rm='rm -i'
 alias ls='ls --color=auto'
 alias ll='ls -alF'
+alias la='ls --color=auto -A'
 alias grep='grep --color=auto'
 alias reload="source ~/.bashrc"
 alias open="xdg-open"
