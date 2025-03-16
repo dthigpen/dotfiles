@@ -7,10 +7,4 @@ do
 	config_dir=$(basename $(dirname "$f"))
 	echo "Setting up ${config_dir} configs"
 	"${f}"
-    # if [[ -f ${f} ]]
-    # then
-    #     name="$(basename ${f})"
-    #     dest=~/${name}
-    #     ln -s "${f}" "${dest}" && echo >&2 -e "Created ${dest}"
-    # fi
 done

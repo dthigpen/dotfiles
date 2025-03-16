@@ -1,6 +1,19 @@
 {
+    "*.css": {
+        "tabsize": 2
+    },
+    "*.html": {
+        "tabsize": 4
+    },
     "*.js": {
         "tabsize": 2
     },
+    "*.json": {
+        "tabsize": 2
+    },
+    "*.md": {
+        "tabsize": 4
+    },
+    "mkparents": true,
     "softwrap": true
 }
