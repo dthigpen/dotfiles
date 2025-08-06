@@ -20,8 +20,8 @@
 	cmm = commit -m
 	co = checkout
 	cob = checkout -b
-	a = add
-	au = add -u
+	a = add -u
+	au = add # add, including untracked
 	lc = log -1
 	undo = reset --soft HEAD~1
 	rename = branch -m
