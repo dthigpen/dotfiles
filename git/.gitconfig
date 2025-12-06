@@ -2,7 +2,8 @@
 	email = davidthigs@gmail.com
 	name = David Thigpen
 [core]
-	editor = code --wait
+	editor = micro
+	# editor = code --wait
 [diff]
     tool = vscode
 	colormoved = "default"
@@ -20,8 +21,8 @@
 	cmm = commit -m
 	co = checkout
 	cob = checkout -b
-	a = add -u
-	au = add # add, including untracked
+	a = add -u # add only tracked files
+	aa = add -A # add all, including untracked
 	lc = log -1
 	undo = reset --soft HEAD~1
 	rename = branch -m

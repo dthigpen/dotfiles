@@ -15,3 +15,5 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 # To apply the command to CTRL-T and ALT-C as well
 export FZF_ALT_C_COMMAND="fd --type d"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+export PATH=~/.local/bin/:"${PATH}"
