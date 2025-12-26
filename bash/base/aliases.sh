@@ -24,6 +24,8 @@ function activate {
 }
 
 # some more ls aliases
+alias ..='cd ..'
+alias ...='cd ../..'
 alias rm='rm -i'
 alias ls='ls --color=auto'
 alias ll='ls -alF'
@@ -32,8 +34,11 @@ alias grep='grep --color=auto'
 alias reload="source ~/.bashrc"
 alias open="xdg-open"
 alias gs="git status"
-alias inst="sudo apt install"
 alias trash="gio trash"
 alias xclip="xclip -selection c"
 alias python="python3"
 alias py="python3"
+
+function search {
+	lynx "https://lite.duckduckgo.com/lite/?q=${1?Must enter a query to search}"
+}

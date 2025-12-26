@@ -9,4 +9,7 @@ shopt -s histappend
 HISTSIZE=100000
 HISTFILESIZE=2000000
 
-. "$HOME/.local/bin/env"
+[[ ! -f "$HOME/.local/bin/env" ]] && source "$HOME/.local/bin/env"
+
+[[ ! -d "$HOME/.local/bin" ]] && mkdir -p "$HOME/.local/bin"
+[[ ":$PATH:" == *":${HOME}/.local/bin:"* ]] || export PATH="${PATH}:${HOME}/.local/bin"

@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-EDITOR='micro'
+export EDITOR='micro'
 # android adb
 export PATH="${PATH}":~/bin/platform-tools
 # marmite markdown ssg
 export PATH="${PATH}":~/bin/marmite
+# racket lang
+export PATH="${PATH}":/usr/racket/bin
+# shfmt shell formatter
+export PATH="${PATH}":~/bin/shfmt
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 export NVM_DIR="$HOME/.nvm"
