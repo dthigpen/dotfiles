@@ -1,0 +1,6 @@
+
+STARTFILE=https://light.duckduckgo.com/lite/
+LOOP_AFTER_PROMPT:FALSE # Prevent looping prompts
+SHOW_CURSOR:TRUE		# Lighlights the active link
+TEXTFIELDS_NEED_ACTIVATION:FALSE # ALlows typing in text fields without pressing enter
+PREFERRED_CHARSET:utf-8	# Ensures proper character encoding
