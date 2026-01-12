@@ -38,6 +38,8 @@ load {
 
 battery all {
     format = "Bat: %percentage"
+    last_full_capacity = true
+    integer_battery_capacity = true
 }
 
 volume master {
