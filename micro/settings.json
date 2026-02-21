@@ -14,16 +14,16 @@
     "*.md": {
         "tabsize": 4
     },
-    ".scm": {
+    "*.scm": {
     		"tabsize": 2
     },
-    ".sh": {
+    "*.sh": {
     		"tabsize": 2
     },
-    ".bash": {
+    "*.bash": {
     		"tabsize": 2
     },
-    ".janet": {
+    "*.janet": {
     	"filetype": "clojure"
     },
     "mkparents": true,
