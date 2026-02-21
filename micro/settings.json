@@ -23,6 +23,9 @@
     ".bash": {
     		"tabsize": 2
     },
+    ".janet": {
+    	"filetype": "clojure"
+    },
     "mkparents": true,
     "softwrap": true
 }
