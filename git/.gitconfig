@@ -44,6 +44,11 @@
 	pl = pull
 	plf = pull --ff-only
 	ds = diff --staged
+	# The nudge and fixref aliases are specifically for usage with bare-repos synced with Syncthing, niche, I know.
+	# Basically Syncthing sometimes has issues syncing both the branch refs and commit refs, a "nudge" after a push fixes that.
+	# And "fixref" is for repairing a dangling commit state
+	nudge = "!f() {\n  branch=$(git rev-parse --abbrev-ref HEAD) || exit 1\n  remote=$(git remote get-url origin) || exit 1\n  case \"$remote\" in\n    /*) path=\"$remote\" ;;\n    ~*) path=\"${remote/#\\~/$HOME}\" ;;\n    *) echo \"Remote is not a local path\"; exit 1 ;;\n  esac\n  touch \"$path/refs/heads/$branch\"\n}; f"
+	fixref = "!f() {\n  hash=$1\n  if [ -z \"$hash\" ]; then\n    echo \"Usage: git fixref <commit-hash>\"\n    exit 1\n  fi\n  branch=$(git rev-parse --abbrev-ref HEAD) || exit 1\n  remote=$(git remote get-url origin) || exit 1\n  case \"$remote\" in\n    /*) path=\"$remote\" ;;\n    ~*) path=\"${remote/#\\~/$HOME}\" ;;\n    *) echo \"Remote is not a local path\"; exit 1 ;;\n  esac\n  git --git-dir=\"$path\" update-ref \"refs/heads/$branch\" \"$hash\"\n}; f"
 [pull]
 	default = current
 	rebase = true
