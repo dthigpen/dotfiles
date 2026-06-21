@@ -6,9 +6,13 @@
 if [ -f ~/dotfiles/bash/${HOSTNAME}/.bashrc ]
 then
     source ~/dotfiles/bash/${HOSTNAME}/.bashrc
+elif [ "${HOSTNAME}" == 'hplaptop' ]
+then
+    source ~/dotfiles/bash/debian/.bashrc
 elif echo "${PREFIX}" | grep -q termux
 then
     source ~/dotfiles/bash/termux/.bashrc
 else
     source ~/dotfiles/bash/default/.bashrc
 fi
+

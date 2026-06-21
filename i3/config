@@ -11,7 +11,7 @@
 # "Windows" key
 set $mod Mod4
 # Name of terminal program
-set $term st
+set $term i3-sensible-terminal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -47,6 +47,12 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 #bindsym XF86AudioLowerVolume exec amixer set Master 5%-
 #bindsym XF86AudioMute exec amixer set Master toggle
 
+# Mouse
+# Enable tap and natural scrolling on touchpad
+# TODO: Handle multiple device's touchpads
+exec xinput set-prop 'SynPS/2 Synaptics TouchPad' "libinput Tapping Enabled" 1
+exec xinput set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Natural Scrolling Enabled' 1
+
 # Brightness
 bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
@@ -76,7 +82,10 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -fn 'fixed' -nb '#000000' -nf '#aaaaaa' -sb '#ffffff' -sf '#000000'
+# bindsym $mod+d exec --no-startup-id dmenu_run -fn 'fixed' -nb '#000000' -nf '#aaaaaa' -sb '#ffffff' -sf '#000000'
+# j4-dmenu-desktop (dmenu but with .desktop entries)
+#bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -fn 'fixed' -nb '#000000' -nf '#aaaaaa' -sb '#ffffff' -sf '#000000'"
+bindsym $mod+d exec --no-startup-id j4-dmenu-desktop
 
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"

@@ -24,5 +24,9 @@
         "key": "ctrl+shift+d",
         "command": "editor.action.addSelectionToPreviousFindMatch",
         "when": "editorFocus"
+    },
+    {
+        "key": "cmd+q", // or "ctrl+q" for Linux
+        "command": "-workbench.action.quit"
     }
 ]
